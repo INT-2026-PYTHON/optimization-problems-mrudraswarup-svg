@@ -83,3 +83,42 @@ element, giving an overall O(n) algorithm.
 =================================================
 
 """
+# Write your code here
+
+# Brute Force Solution
+def first_repeating_brute(nums):
+
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+
+            if nums[i] == nums[j]:
+                return nums[j]
+
+    return -1
+
+
+# Optimized Solution using Set
+def first_repeating_fast(nums):
+
+    seen = set()
+
+    for num in nums:
+
+        if num in seen:
+            return num
+
+        seen.add(num)
+
+    return -1
+
+
+# Input from user
+nums = list(map(int, input("Enter numbers separated by space: ").split()))
+
+# Function calls
+brute_result = first_repeating_brute(nums)
+fast_result = first_repeating_fast(nums)
+
+# Output
+print("Brute Force:", brute_result, "# O(n^2)")
+print("Optimized:  ", fast_result, "# O(n)")

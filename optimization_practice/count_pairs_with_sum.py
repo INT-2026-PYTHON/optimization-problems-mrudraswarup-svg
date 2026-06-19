@@ -91,3 +91,49 @@ the overall algorithm runs in O(n).
 =================================================
 
 """
+# Write your code here
+
+# Brute Force Solution
+def count_pairs_brute(nums, target):
+
+    count = 0
+
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+
+            if nums[i] + nums[j] == target:
+                count += 1
+
+    return count
+
+
+# Optimized Solution using Dictionary
+def count_pairs_fast(nums, target):
+
+    freq = {}
+    count = 0
+
+    for x in nums:
+
+        complement = target - x
+
+        if complement in freq:
+            count += freq[complement]
+
+        freq[x] = freq.get(x, 0) + 1
+
+    return count
+
+
+# Input from user
+nums = list(map(int, input("Enter numbers separated by space: ").split()))
+target = int(input("Enter target: "))
+
+# Function calls
+brute_result = count_pairs_brute(nums, target)
+fast_result = count_pairs_fast(nums, target)
+
+# Output
+print("Brute Force:", brute_result, "# O(n^2)")
+print("Optimized:  ", fast_result, "# O(n)") 
+
