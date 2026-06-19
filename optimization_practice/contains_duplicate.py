@@ -63,3 +63,42 @@ Optimized:   False  # O(n)
 =================================================
 
 """
+# Write your code here
+
+# Brute Force Solution
+def has_duplicate_brute(nums):
+
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+
+            if nums[i] == nums[j]:
+                return True
+
+    return False
+
+
+# Optimized Solution using Set
+def has_duplicate_fast(nums):
+
+    seen = set()
+
+    for num in nums:
+
+        if num in seen:
+            return True
+
+        seen.add(num)
+
+    return False
+
+
+# Input from user
+nums = list(map(int, input("Enter numbers separated by space: ").split()))
+
+# Function calls
+brute_result = has_duplicate_brute(nums)
+fast_result = has_duplicate_fast(nums)
+
+# Output
+print("Brute Force:", brute_result, "# O(n^2)")
+print("Optimized:  ", fast_result, "# O(n)")
